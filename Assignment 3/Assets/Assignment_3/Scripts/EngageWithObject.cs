@@ -8,8 +8,8 @@ public class EngageWithObject : MonoBehaviour
     private bool _isGrabbed;
     private Renderer _myRenderer;
     private Vector3 _lastPosition;
-    private float velocityThrowFactor = 100.0f;
-    private float grabReturnFactor = 5.0f;
+    private const float velocityThrowFactor = 100.0f;
+    private const float grabReturnFactor = 5.0f;
 
     public GameObject GazeDot;
 

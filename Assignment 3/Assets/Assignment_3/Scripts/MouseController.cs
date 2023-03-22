@@ -18,8 +18,18 @@ public class MouseController : MonoBehaviour
     void Update()
     {
         MouseWheel();
+        List<Touch> touches = new List<Touch>(Input.touches);
 
-        if (Google.XR.Cardboard.Api.IsTriggerPressed || Input.GetMouseButton(1))
+        bool isTouching = false;
+        foreach (Touch touch in Input.touches)
+        {
+            if (touch.phase == TouchPhase.Began || touch.phase == TouchPhase.Moved || touch.phase == TouchPhase.Stationary)
+            {
+                isTouching = true;
+            }
+        }
+
+        if (isTouching || Input.GetMouseButton(1))
         {
             _isPressing = true;
             if (_pressingCoroutine == null)  
