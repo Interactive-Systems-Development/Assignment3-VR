@@ -19,7 +19,7 @@ public class MouseController : MonoBehaviour
     {
         MouseWheel();
 
-        if (Google.XR.Cardboard.Api.IsTriggerHeldPressed || Input.GetMouseButton(1))
+        if (Google.XR.Cardboard.Api.IsTriggerPressed || Input.GetMouseButton(1))
         {
             _isPressing = true;
             if (_pressingCoroutine == null)  
