@@ -6,10 +6,24 @@ public class EngageWithObject : MonoBehaviour
 {
     private Rigidbody rigidBody;
     private bool grabbed;
+    private Renderer _myRenderer;
+
+    /// <summary>
+    /// The material to use when this object is inactive (not being gazed at).
+    /// </summary>
+    public Material InactiveMaterial;
+
+    /// <summary>
+    /// The material to use when this object is active (gazed at).
+    /// </summary>
+    public Material GazedAtMaterial;
+
     // Start is called before the first frame update
     void Start()
     {
         rigidBody = GetComponent<Rigidbody>();
+        _myRenderer = GetComponent<Renderer>();
+        SetMaterial(false);
     }
 
     // Update is called once per frame
@@ -22,7 +36,7 @@ public class EngageWithObject : MonoBehaviour
     /// </summary>
     public void OnPointerEnter()
     {
-        
+        SetMaterial(true);
     }
 
     /// <summary>
@@ -30,7 +44,7 @@ public class EngageWithObject : MonoBehaviour
     /// </summary>
     public void OnPointerExit()
     {
-        
+        SetMaterial(false);
     }
 
     /// <summary>
@@ -59,5 +73,20 @@ public class EngageWithObject : MonoBehaviour
         rigidBody.isKinematic = false;
         transform.parent = treasure.transform;
         grabbed = false;
+    }
+
+    /// <summary>
+    /// Sets this instance's material according to gazedAt status.
+    /// </summary>
+    ///
+    /// <param name="gazedAt">
+    /// Value `true` if this object is being gazed at, `false` otherwise.
+    /// </param>
+    private void SetMaterial(bool gazedAt)
+    {
+        if (InactiveMaterial != null && GazedAtMaterial != null)
+        {
+            _myRenderer.material = gazedAt ? GazedAtMaterial : InactiveMaterial;
+        }
     }
 }
