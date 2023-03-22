@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class EngageWithObject : MonoBehaviour
 {
-    private Rigidbody rigidBody;
-    private bool grabbed;
+    private Rigidbody _rigidBody;
+    private bool _isGrabbed;
     private Renderer _myRenderer;
+    private Vector3 _lastPosition;
+    private float velocityThrowFactor = 100.0f;
+    private float grabReturnFactor = 5.0f;
+
+    public GameObject GazeDot;
 
     /// <summary>
     /// The material to use when this object is inactive (not being gazed at).
@@ -21,7 +26,7 @@ public class EngageWithObject : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rigidBody = GetComponent<Rigidbody>();
+        _rigidBody = GetComponent<Rigidbody>();
         _myRenderer = GetComponent<Renderer>();
         SetMaterial(false);
     }
@@ -29,8 +34,14 @@ public class EngageWithObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (_isGrabbed)
+        {
+            _lastPosition = transform.position;
+            _rigidBody.velocity = (GazeDot.transform.position - transform.position) * grabReturnFactor;
+        }
+            
     }
+
     /// <summary>
     /// This method is called by the Main Camera when it starts gazing at this GameObject.
     /// </summary>
@@ -53,7 +64,7 @@ public class EngageWithObject : MonoBehaviour
     /// </summary>
     public void OnPointerClick()
     {
-        if (!grabbed)
+        if (!_isGrabbed)
             Grab();
         else
             Drop();
@@ -62,17 +73,28 @@ public class EngageWithObject : MonoBehaviour
     private void Grab()
     {
         GameObject camera = GameObject.Find("Main Camera");
-        rigidBody.isKinematic = true;
-        transform.parent = camera.transform;
-        grabbed = true;
+        _rigidBody.useGravity = false;
+        _rigidBody.freezeRotation = true;
+        _rigidBody.velocity = new Vector3(0, 0, 0);
+
+        StartCoroutine(FadeGazeDot(true));
+
+        transform.SetParent(camera.transform);
+        _isGrabbed = true;
     }
 
     private void Drop()
     {
         GameObject treasure = GameObject.Find("Treasure");
-        rigidBody.isKinematic = false;
-        transform.parent = treasure.transform;
-        grabbed = false;
+        _rigidBody.useGravity = true;
+        _rigidBody.freezeRotation = false;
+
+        StartCoroutine(FadeGazeDot(false));
+
+        transform.SetParent(treasure.transform);
+        _isGrabbed = false;
+
+        _rigidBody.AddForce((transform.position - _lastPosition) * velocityThrowFactor, ForceMode.VelocityChange);
     }
 
     /// <summary>
@@ -87,6 +109,32 @@ public class EngageWithObject : MonoBehaviour
         if (InactiveMaterial != null && GazedAtMaterial != null)
         {
             _myRenderer.material = gazedAt ? GazedAtMaterial : InactiveMaterial;
+        }
+    }
+
+    private IEnumerator FadeGazeDot(bool fadeAway)
+    {
+        // fade from opaque to transparent
+        if (fadeAway)
+        {
+            // loop over 0.2 seconds backwards
+            for (float i = 0.2f; i >= 0; i -= Time.deltaTime)
+            {
+                // set color with i as alpha
+                GazeDot.GetComponent<TextMesh>().color = new Color(1, 1, 1, i);
+                yield return null;
+            }
+        }
+        // fade from transparent to opaque
+        else
+        {
+            // loop over 0.2 seconds
+            for (float i = 0.2f; i <= 1; i += Time.deltaTime)
+            {
+                // set color with i as alpha
+                GazeDot.GetComponent<TextMesh>().color = new Color(255, 255, 255, i);
+                yield return null;
+            }
         }
     }
 }
