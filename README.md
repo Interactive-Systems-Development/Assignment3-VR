@@ -1,5 +1,13 @@
 # Assignment3-VR
 
+Entire Video: (also available in *resources/*)
+![](resources/ezgif-4-d741d62552.gif)
+Grabbing:
+![](resources/ezgif-4-b7e94e2e1e.gif)
+Dropping & Physics:
+![](resources/ezgif-4-890e5e6995.gif)
+Depth change of objects:
+![](resources/ezgif-4-cb6b75ee6b.gif)
 ## Implemented Features
 (All requirements + Optional)
 - You can look around using gaze tracking.
@@ -8,7 +16,7 @@
   - drop with tap
   - tap and hold for grabbing and changing the depth of an object
 - Enable physics on **blocks** and the **environment** so they behave naturally (drop and collide)
-- Make sure all interactions work in both the Unity emulator (mouse first person camera) and your Android phone
+- All interactions work in both the Unity emulator (mouse first person camera) and our Android phone
   - grab with left-click
   - drop with left-click
   - hold **right-click**/**mousewheel** for changing the depth of an object
