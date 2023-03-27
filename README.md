@@ -1,6 +1,6 @@
 # Assignment3-VR
 
-Entire Video: (also available in *resources/*)  <br />
+Entire Video: (also available in `resources/`)  <br />
 ![](resources/ezgif-4-d741d62552.gif)           <br />
 Grabbing:                                       <br />
 ![](resources/ezgif-4-b7e94e2e1e.gif)           <br />
