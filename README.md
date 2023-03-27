@@ -1,7 +1,5 @@
 # Assignment3-VR
 
-<video>https://github.com/Interactive-Systems-Development/Assignment3-VR/blob/main/Unity%20VR.mp4</video>
-
 ## Implemented Features
 (All requirements + Optional)
 - You can look around using gaze tracking.
