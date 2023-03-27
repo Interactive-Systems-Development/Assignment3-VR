@@ -1,13 +1,14 @@
 # Assignment3-VR
 
-Entire Video: (also available in *resources/*)
-![](resources/ezgif-4-d741d62552.gif)
-Grabbing:
-![](resources/ezgif-4-b7e94e2e1e.gif)
-Dropping & Physics:
-![](resources/ezgif-4-890e5e6995.gif)
-Depth change of objects:
-![](resources/ezgif-4-cb6b75ee6b.gif)
+Entire Video: (also available in *resources/*) \\
+![](resources/ezgif-4-d741d62552.gif) \\
+Grabbing: \\
+![](resources/ezgif-4-b7e94e2e1e.gif) \\
+Dropping & Physics: \\
+![](resources/ezgif-4-890e5e6995.gif) \\
+Depth change of objects: \\
+![](resources/ezgif-4-cb6b75ee6b.gif) \\
+
 ## Implemented Features
 (All requirements + Optional)
 - You can look around using gaze tracking.
