@@ -1,6 +1,9 @@
 # Assignment3-VR
 
-![Unity VR Demo](Unity VR.mp4)
+<iframe
+  src="https://github.com/Interactive-Systems-Development/Assignment3-VR/blob/main/Unity%20VR.mp4"
+  style="width:100%; height:300px;"
+></iframe>
 
 ## Implemented Features
 (All requirements + Optional)
